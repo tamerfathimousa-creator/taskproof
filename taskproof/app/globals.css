@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #edf1ef;
+  --foreground: #12231f;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2.5 font-semibold text-sm transition-colors;
+}
+.btn-primary {
+  @apply btn bg-accent text-white hover:bg-deep;
+}
+.btn-secondary {
+  @apply btn bg-transparent border border-line text-ink hover:bg-surface2;
+}
+.btn-danger {
+  @apply btn bg-bad text-white hover:opacity-90;
+}
+.card {
+  @apply bg-surface border border-line rounded-2xl;
+}
+.input {
+  @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent;
+}
+.label {
+  @apply block text-xs font-medium text-muted mb-1;
+}
+.pill {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+}
