@@ -36,11 +36,14 @@ ${conversationText && conversationText.trim() ? conversationText : "(no response
 
   // One typed "score" question per rubric criterion. The legend just labels
   // each integer level "n/max" — Jev doesn't need a prose rubric per level,
-  // the instructions field carries the actual grading guidance.
+  // the instructions field carries the actual grading guidance. The live API
+  // requires `criteria` to be an ARRAY, indexed by score level (0 first) —
+  // an object map (what an earlier version of this file sent) is rejected
+  // with a 400 "expected array, received object".
   const questions = {};
   for (const c of criteria) {
-    const legend = {};
-    for (let i = 0; i <= c.maxScore; i++) legend[String(i)] = `${i} out of ${c.maxScore}`;
+    const legend = [];
+    for (let i = 0; i <= c.maxScore; i++) legend.push(`${i} out of ${c.maxScore}`);
     questions[c.id] = {
       type: "score",
       instructions: `Score the candidate's response strictly against this criterion: "${c.name}"${
